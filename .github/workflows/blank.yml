@@ -14,10 +14,10 @@ jobs:
       - name: connect ssh
         uses: appleboy/ssh-action@master
         with:
-          host: ${{secrets.IP}}
-          username: ${{secrets.HOST_USER}}
-          key: ${{secrets.COMMON_PEM_KEY}}
-          port: ${{secrets.PORT}}
+          host: ${{ secrets.IP }}
+          username: ${{ secrets.HOST_USER }}
+          key: ${{ secrets.COMMON_PEM_KEY }}
+          port: ${{ secrets.PORT }}
           script: |
             echo hello connect
         
