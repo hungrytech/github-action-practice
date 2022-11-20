@@ -17,7 +17,7 @@ jobs:
           host: ${{ secrets.IP }}
           username: ${{ secrets.HOST_USER }}
           key: ${{ secrets.COMMON_PEM_KEY }}
-          password: ${{ secrets.HOST_PASSWORD }}
+#          password: ${{ secrets.HOST_PASSWORD }}
           port: ${{ secrets.PORT }}
           script: |
             echo hello connect
