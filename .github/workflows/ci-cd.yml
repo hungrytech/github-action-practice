@@ -58,6 +58,6 @@ jobs:
             
             docker pull ${{ secrets.DOCKER_REGISTRY }}/action-test:latest
             
-            docker run -d --name action-test -p 8081:8080 action-test
+            docker run -d --name action-test -p 8081:8080 ${{ secrets.DOCKER_REGISTRY }}/action-test
             
             exit
