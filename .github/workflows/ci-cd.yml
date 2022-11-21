@@ -54,8 +54,7 @@ jobs:
           script: |
             echo hello connect
             
-            docker login -u ${{ secrets.ACCESS_KEY }} ${{ secrets.DOCKER_REGISTRY }}
-            ${{ secrets.SECRET_KEY }}
+            docker login -u ${{ secrets.ACCESS_KEY }} ${{ secrets.DOCKER_REGISTRY }} -p ${{ secrets.SECRET_KEY }}
             
             docker pull ${{ secrets.DOCKER_REGISTRY }}/action-test:latest
             
