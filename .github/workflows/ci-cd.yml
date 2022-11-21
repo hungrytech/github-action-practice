@@ -34,10 +34,12 @@ jobs:
       - name: docker build and push
         uses: docker/setup-buildx-action@v2
         with:
-          file: ./dockerfile
+          context: .
           push: true
           tags: |
             ${{ secrets.DOCKER_REGISTRY }}/action-test:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
       - name: connect ssh
         uses: appleboy/ssh-action@master
