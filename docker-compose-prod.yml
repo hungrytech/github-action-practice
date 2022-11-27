@@ -1,0 +1,8 @@
+
+version: "3"
+
+services:
+  hugrytech:
+    image: "hungrytech.kr.ncr.ntruss.com/jib-test:1.0.5"
+    ports:
+      - "8000:8080"

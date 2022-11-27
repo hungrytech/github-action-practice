@@ -3,6 +3,8 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     id("org.springframework.boot") version "2.7.5"
     id("io.spring.dependency-management") version "1.0.15.RELEASE"
+    id("com.google.cloud.tools.jib") version "3.3.1"
+
     kotlin("jvm") version "1.6.21"
     kotlin("plugin.spring") version "1.6.21"
 }
@@ -32,6 +34,18 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+jib {
+    from {
+        image = "adoptopenjdk/openjdk11:alpine"
+    }
+    to {
+        image = "hungrytech.kr.ncr.ntruss.com/jib-test:1.0.5"
+    }
+
+
+
 }
 
 tasks.jar { enabled = false }

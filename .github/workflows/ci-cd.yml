@@ -34,30 +34,12 @@ jobs:
           password: ${{ secrets.SECRET_KEY }}
 
 
-      - name: docker build and push
-        uses: docker/build-push-action@v2
+      - name: JIB container publish
+        uses: MathieuSoysal/jib-container-publish.yml@v2.1.3
         with:
-          context: .
-          push: true
-          tags: ${{ secrets.DOCKER_REGISTRY }}/action-test:latest
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-
-      - name: connect ssh
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOST_IP }}
-          username: ${{ secrets.HOST_USER }}
-          key: ${{ secrets.COMMON_PEM_KEY }}
-#          password: ${{ secrets.HOST_PASSWORD }}
-          port: ${{ secrets.PORT }}
-          script: |
-            echo hello connect
-            
-            docker login -u ${{ secrets.ACCESS_KEY }} ${{ secrets.DOCKER_REGISTRY }} -p ${{ secrets.SECRET_KEY }}
-            
-            docker pull ${{ secrets.DOCKER_REGISTRY }}/action-test:latest
-            
-            docker run -d --name action-test -p 8081:8080 ${{ secrets.DOCKER_REGISTRY }}/action-test
-            
-            exit
+          REGISTRY: ${{ secrets.DOCKER_REGISTRY }}
+          IMAGE_NAME: jib-test
+          tags: ${{ secrets.DOCKER_REGISTRY }}/jib-test:1.0.5
+          USERNAME: ${{ secrets.ACCESS_KEY }}
+          PASSWORD: ${{ secrets.SECRET_KEY }}
+          java-version: 11
