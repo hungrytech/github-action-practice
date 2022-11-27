@@ -37,11 +37,11 @@ jobs:
         run: ./gradlew jib
 
       - name: Deploy to Docker swarm
-        uses: chaplyk/docker-compose-remote-action@v1.1
+        uses: pcjun97/action-setup-docker-host-ssh@v1
         with:
-          ssh_host: ${{ secrets.REMOTE_DOCKER_HOST }}
-          ssh_user: ${{ secrets.SSH_USER }}
-          ssh_key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
-          compose_file: docker-compose-prod.yml
-          pull: true
-          build: true
+          host: ${{ secrets.REMOTE_DOCKER_HOST }}
+          user: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
+      - run: |
+          docker login -u ${{ secrets.ACCESS_KEY }} ${{ secrets.DOCKER_REGISTRY }} -p ${{ secrets.SECRET_KEY }}
+          docker-compose -f docker-compose-prod.yml up -d
