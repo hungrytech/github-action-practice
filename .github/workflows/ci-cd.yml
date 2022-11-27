@@ -43,8 +43,8 @@ jobs:
           ssh_private_key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
           ssh_public_key: ${{ secrets.DOCKER_SSH_PUBLIC_KEY }}
           deployment_mode: docker-swarm
-          copy_stack_file: true
+          copy_stack_file: false
           deploy_path: /root
-          stack_file_name: docker-compose-prod.yaml
-          keep_files: 5
+          stack_file_name: ./docker-compose-prod.yaml
+          keep_files: 3
           args: docker-compose -f docker-compose-prod,yml up -d
