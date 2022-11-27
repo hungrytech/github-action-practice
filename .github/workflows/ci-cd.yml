@@ -37,11 +37,11 @@ jobs:
         run: ./gradlew jib
 
       - name: Deploy to Docker swarm
+        run: docker -H ssh://${{ secrets.REMOTE_DOCKER_HOST }}
         uses: wshihadeh/docker-deployment-action@v1
         with:
           remote_docker_host: ${{ secrets.REMOTE_DOCKER_HOST }}
           ssh_private_key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
-          ssh_public_key: ${{ secrets.DOCKER_SSH_PUBLIC_KEY }}
           deployment_mode: docker-swarm
           copy_stack_file: false
           deploy_path: /root
