@@ -37,7 +37,6 @@ jobs:
         run: ./gradlew jib
 
       - name: Deploy to Docker swarm
-        run: docker -H ssh://${{ secrets.REMOTE_DOCKER_HOST }}
         uses: wshihadeh/docker-deployment-action@v1
         with:
           remote_docker_host: ${{ secrets.REMOTE_DOCKER_HOST }}
