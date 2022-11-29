@@ -44,4 +44,12 @@ jobs:
           key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
       - run: |
           docker login -u ${{ secrets.ACCESS_KEY }} ${{ secrets.DOCKER_REGISTRY }} -p ${{ secrets.SECRET_KEY }}
+          
+          docker ps -qa
+          
+          docker rm -f $(docker ps -qa)
+          docker image rm -f $(docker image ls -q)
+          
           docker-compose -f docker-compose-prod.yml up -d
+
+  test:
