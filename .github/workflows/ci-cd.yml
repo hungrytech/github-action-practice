@@ -51,5 +51,3 @@ jobs:
           docker image rm -f $(docker image ls -q)
           
           docker-compose -f docker-compose-prod.yml up -d
-
-  test:
