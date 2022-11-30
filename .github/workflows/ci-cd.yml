@@ -39,7 +39,7 @@ jobs:
       - name: create file
         run: | 
           pwd
-          test_text > .env
+          echo test_text > .env
 #      - name: Deploy to Docker swarm
 #        uses: pcjun97/action-setup-docker-host-ssh@v1
 #        with:
